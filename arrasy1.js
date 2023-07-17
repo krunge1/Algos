@@ -6,7 +6,7 @@
 // pushFront([5,7,2,3], 8) => [8,5,7,2,3]
 // pushFront([99], 7) => [7,99]
 
-let arr = [6,5,7,2,3]
+// let arr = [6,5,7,2,3]
 
 function pushFront(arr, value){
     for (let i=arr.length; i>0; i--){
@@ -52,7 +52,7 @@ function insertAt(arr, location, value) {
     return arr;
 }
 
-// console.log(insertAt(arr, 4, 254))
+// console.log(insertAt([9,33,7], 1, 42))
 
 // BONUS: Remove At
 // Given an array and an index into array, remove and return the array value at that index. Prove the value is removed from the array by printing it. Think of popFront(arr) as equivalent to removeAt(arr,0).
@@ -63,13 +63,55 @@ function insertAt(arr, location, value) {
 // removeAt([8,20,55,44,98], 3) => 44 returned, with [8,20,55,98] printed in the function
 
 function removeAt(arr, location){
-    let removedValue = arr[location-1]
-    for (let i=location-1; i<arr.length; i++){
+    let removedValue = arr[location]
+    for (let i=location; i<arr.length; i++){
         arr[i]=arr[i+1]
     }
     console.log(removedValue)
-    arr.length= arr.length-1
+    arr.length = arr.length-1
     return arr;
 }
 
-console.log(removeAt(arr, 2))
+// console.log(removeAt([8,20,55,44,98], 3))
+
+// BONUS: Swap Pairs
+// Swap positions of successive pairs of values of given array. If length is odd, do not change the final element.
+
+// Examples:
+
+// insertAt([1,2,3,4]) => [2,1,4,3]
+// insertAt(["Brendan",true,42]) => [true,"Brendan",42]
+
+function swapPairs(arr) {
+    for (let i=0; i<arr.length-1; i+=2){
+        tempValue = arr[i]
+        arr[i] = arr[i+1]   
+        arr[i+1] = tempValue
+    }
+    return arr;
+}
+
+    // console.log(swapPairs([1,2,3,5,4,6,7]))
+
+// Given a sorted array, remove duplicate values. Because array elements are already in order, all duplicate values will be grouped together. If you already made the Remove At function, you are welcome to use that! If you solved this using nested loops, for an extra challenge, try to do it without any nested loops!
+
+// Examples:
+
+// removeDupes([-2,-2,3.14,5,5,10]) => [-2,3.14,5,10]
+// removeDupes([9,19,19,19,19,19,29]) => [9,19,29]
+
+function removeDups(arr) {
+    let newArray = [];
+    let previousValue = null;
+    for (let i = 0; i < arr.length; i++) {
+        
+    if (arr[i] !== previousValue) {
+        newArray.push(arr[i]);
+        previousValue = arr[i];
+    }
+    }
+    
+    return newArray;
+}
+console.log(removeDups([-2,-2,3.14,5,5,10]))
+console.log(removeDups([9,19,19,19,19,19,29]))
