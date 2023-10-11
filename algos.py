@@ -61,43 +61,71 @@
 # if __name__ == '__main__':
 #     main()
 
-from linked_list import LinkedList
-from linked_list_node import LinkedListNode
+# from linked_list import LinkedList
+# from linked_list_node import LinkedListNode
 
-def remove_nth_last_node(head, n):
-    right = head
-    left = head
+# def remove_nth_last_node(head, n):
+#     right = head
+#     left = head
     
-    for i in range(n):
-        right = right.next
+#     for i in range(n):
+#         right = right.next
 
-    if not right:
-        return head.next
+#     if not right:
+#         return head.next
 
-    while right.next:
-        right = right.next
-        left = left.next
+#     while right.next:
+#         right = right.next
+#         left = left.next
     
-    left.next = left.next.next
+#     left.next = left.next.next
     
-    return head
+#     return head
 
-# Driver code
-def main():
-    lists = [[23, 89, 10, 5, 67, 39, 70, 28], [34, 53, 6, 95, 38, 28, 17, 63, 16, 76], [288, 224, 275, 390, 4, 383, 330, 60, 193],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9], [69, 8, 49, 106, 116, 112, 104, 129, 39, 14, 27, 12]]
-    n = [4, 1, 6, 9, 11]
+# # Driver code
+# def main():
+#     lists = [[23, 89, 10, 5, 67, 39, 70, 28], [34, 53, 6, 95, 38, 28, 17, 63, 16, 76], [288, 224, 275, 390, 4, 383, 330, 60, 193],
+#     [1, 2, 3, 4, 5, 6, 7, 8, 9], [69, 8, 49, 106, 116, 112, 104, 129, 39, 14, 27, 12]]
+#     n = [4, 1, 6, 9, 11]
 
-    for i in range(len(n)):
-        input_linked_list = LinkedList()
-        input_linked_list.create_linked_list(lists[i])
-        print(i+1, ". Linked List:\t", end='')
-        print()
-        print("n = ", n[i])
-        result = remove_nth_last_node(input_linked_list.head, n[i])
-        print("Updated Linked List:\t", end='')
-        print()
-        print("-"*100)
+#     for i in range(len(n)):
+#         input_linked_list = LinkedList()
+#         input_linked_list.create_linked_list(lists[i])
+#         print(i+1, ". Linked List:\t", end='')
+#         print()
+#         print("n = ", n[i])
+#         result = remove_nth_last_node(input_linked_list.head, n[i])
+#         print("Updated Linked List:\t", end='')
+#         print()
+#         print("-"*100)
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
+
+# def is_palindrome(s):
+
+#   start = 0
+#   end = len(s)-1
+
+#   while start<=end:
+#     if s[start] == s[end]:
+#       start +=1
+#       end -=1
+#     else:
+#       start +=1
+#       while start <= end:
+#         if s[start] == s[end]:
+#           start +=1
+#           end -=1
+#         else:
+#           start -=1
+#           end -=1
+#           while start <= end:
+#             if s[start] == s[end]:
+#               start +=1
+#               end -=1
+#             else:
+#               return False
+
+#   return True
+# print(is_palindrome("madame"))
