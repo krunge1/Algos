@@ -129,3 +129,59 @@
 
 #   return True
 # print(is_palindrome("madame"))
+
+# def is_happy_number(n):
+#     slow = n
+#     fast = sum_of_squared_digits(slow)
+
+#     while fast != 1:
+#         slow = sum_of_squared_digits(slow)
+#         fast = sum_of_squared_digits(sum_of_squared_digits(fast))
+#         if fast == slow:
+#             return False
+    
+#     return True
+
+# def sum_of_squared_digits(number): # Helper function that calculates the sum of squared digits.
+#     total_sum = 0
+#     while number > 0:
+#         digit = number % 10
+#         number = number // 10
+#         total_sum += digit ** 2
+#     return total_sum
+
+# def main():
+#     inputs = [1, 5, 19, 25, 7]
+#     for i in range(len(inputs)):
+#         print(i+1, ".\tInput Number: ", inputs[i], sep="")
+#         print("\tIs it a happy number? ", is_happy_number(inputs[i]))
+#         print("-" * 100)
+
+
+# if __name__ == '__main__':
+#     main()
+
+
+
+# def detect_cycle(head):
+#   slow = head
+#   fast = head
+
+#   while fast.next:
+#     slow = slow.next
+#     fast = fast.next.next
+#     if fast == slow:
+#         return True
+
+#   return False
+
+
+# def get_middle_node(head):
+#     slow = head
+#     fast = head
+
+#     while fast and fast.next:
+#         slow = slow.next
+#         fast = fast.next.next
+
+#     return slow
