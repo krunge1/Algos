@@ -185,3 +185,93 @@
 #         fast = fast.next.next
 
 #     return slow
+# def find_duplicate(nums):
+#     slow = nums[0]
+#     fast = nums[0]
+
+#     while True:
+#         slow = nums[slow]
+#         fast = nums[nums[fast]]
+#         if slow == fast:
+#             break
+
+#     slow = nums[0]
+#     while slow != fast:
+#         slow = nums[slow]
+#         fast = nums[fast]
+  
+    
+#     return fast
+# # Driver code
+# def main():
+#     nums = [
+#         [1, 3, 2, 3, 5, 4], 
+#         [2, 4, 5, 4, 1, 3], 
+#         [1, 6, 3, 5, 1, 2, 7, 4], 
+#         [1, 2, 2, 4, 3], 
+#         [3, 1, 3, 5, 6, 4, 2]
+#     ]
+#     for i in range(len(nums)):
+#         print(i + 1, ".\tnums = ", nums[i], sep="")
+#         print("\tDuplicate number = ", find_duplicate(nums[i]), sep="")
+#         print("-" * 100)
+# if __name__ == "__main__":
+#     main()
+
+from linked_list import LinkedList
+
+def palindrome(head):
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    
+    slow = reverse_linked_list(slow)
+    fast = head
+    check = True
+    while fast and slow:
+        if fast.data != slow.data:
+            check = False
+        else:
+            slow = slow.next
+            fast = fast.next
+    
+    return check
+
+def reverse_linked_list(slow_ptr):
+    prev = None
+    next = None
+    curr = slow_ptr
+    while curr is not None:
+        next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+    return prev
+
+# Driver code
+def main():
+    input = (
+                [2, 4, 6, 4, 2],
+                [0, 3, 5, 5, 0],
+                [9, 7, 4, 4, 7, 9],
+                [5, 4, 7, 9, 4, 5],
+                [5, 9, 8, 3, 8, 9, 5],
+            )
+    j = 1
+
+    for i in range(len(input)):
+        input_linked_list = LinkedList()
+        input_linked_list.create_linked_list(input[i])
+        print(j, ".\tLinked List:", end=" ", sep="")
+        print_list_with_forward_arrow(input_linked_list.head)
+        head = input_linked_list.head
+        print("\n\tIs it a palindrome?", "Yes" if palindrome(head) else "No")
+        j += 1
+        print("-"*100, "\n")
+
+
+if __name__ == "__main__":
+    main()
