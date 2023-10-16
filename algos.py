@@ -218,60 +218,63 @@
 # if __name__ == "__main__":
 #     main()
 
-from linked_list import LinkedList
+# from linked_list import LinkedList
 
-def palindrome(head):
-    slow = head
-    fast = head
+# def palindrome(head):
+#     slow = head
+#     fast = head
 
-    while fast and fast.next:
-        slow = slow.next
-        fast = fast.next.next
+#     while fast and fast.next:
+#         slow = slow.next
+#         fast = fast.next.next
     
-    slow = reverse_linked_list(slow)
-    fast = head
-    check = True
-    while fast and slow:
-        if fast.data != slow.data:
-            check = False
-        else:
-            slow = slow.next
-            fast = fast.next
+#     reversed_portion = reverse_linked_list(slow)
+#     check = check_for_match(head, reversed_portion)
+
+#     return check
+
+# def check_for_match(first, second):
+#     while first and second:
+#         if first.data != second.data:
+#             return False
+#         else:
+#             first = first.next
+#             second = second.next
     
-    return check
+#     return True
+    
+# def reverse_linked_list(slow_ptr):
+#     prev = None
+#     next = None
+#     curr = slow_ptr
+#     while curr is not None:
+#         next = curr.next
+#         curr.next = prev
+#         prev = curr
+#         curr = next
+#     return prev
 
-def reverse_linked_list(slow_ptr):
-    prev = None
-    next = None
-    curr = slow_ptr
-    while curr is not None:
-        next = curr.next
-        curr.next = prev
-        prev = curr
-        curr = next
-    return prev
+# # Driver code
+# def main():
+#     input = (
+#                 [2, 4, 6, 4, 2],
+#                 [0, 3, 5, 5, 0],
+#                 [9, 7, 4, 4, 7, 9],
+#                 [5, 4, 7, 9, 4, 5],
+#                 [5, 9, 8, 3, 8, 9, 5],
+#             )
+#     j = 1
 
-# Driver code
-def main():
-    input = (
-                [2, 4, 6, 4, 2],
-                [0, 3, 5, 5, 0],
-                [9, 7, 4, 4, 7, 9],
-                [5, 4, 7, 9, 4, 5],
-                [5, 9, 8, 3, 8, 9, 5],
-            )
-    j = 1
-
-    for i in range(len(input)):
-        input_linked_list = LinkedList()
-        input_linked_list.create_linked_list(input[i])
-        print(j, ".\tLinked List:", end=" ", sep="")
-        print_list_with_forward_arrow(input_linked_list.head)
-        head = input_linked_list.head
-        print("\n\tIs it a palindrome?", "Yes" if palindrome(head) else "No")
-        j += 1
-        print("-"*100, "\n")
+#     for i in range(len(input)):
+#         input_linked_list = LinkedList()
+#         input_linked_list.create_linked_list(input[i])
+#         print(j, ".\tLinked List:", end=" ", sep="")
+#         head = input_linked_list.head
+#         print("\n\tIs it a palindrome?", "Yes" if palindrome(head) else "No")
+#         j += 1
+#         print("-"*100, "\n")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
+
