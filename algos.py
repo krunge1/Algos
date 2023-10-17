@@ -278,3 +278,45 @@
 # if __name__ == "__main__":
 #     main()
 
+def merge_intervals(intervals):
+    output = []
+    output.append([intervals[0][0], intervals[0][1]])
+
+    for i in range(1, len(intervals)):
+        last_added = output[len(output)-1]
+        cur_begin = intervals[i][0]
+        cur_end = intervals[i][1]
+        last_added_end = last_added[1]
+
+        if cur_begin <= last_added_end:
+            output[-1][1] = max(cur_end, last_added_end)
+        else:
+            output.append([cur_begin, cur_end])
+
+
+    return output
+
+
+# Driver code
+def main():
+    
+    all_intervals = [
+    [[1, 5], [3, 7], [4, 6]],
+    [[1, 5], [4, 6], [6, 8], [11, 15]],
+    [[3, 7], [6, 8], [10, 12], [11, 15]],
+    [[1, 5]],
+    [[1, 9], [3, 8], [4, 4]],
+    [[1, 2], [3, 4], [8, 8]],
+    [[1, 5], [1, 3]],
+    [[1, 5], [6, 9]],
+    [[0, 0], [1, 18], [1, 3]]
+    ]
+
+    for i in range(len(all_intervals)):
+        print(i + 1, ". Intervals to merge: ", all_intervals[i], sep="")
+        result = merge_intervals(all_intervals[i])
+        print("   Merged intervals:\t", result)
+        print("-"*100)
+
+if __name__ == '__main__':
+    main()
