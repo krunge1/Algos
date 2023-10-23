@@ -278,45 +278,100 @@
 # if __name__ == "__main__":
 #     main()
 
-def merge_intervals(intervals):
-    output = []
-    output.append([intervals[0][0], intervals[0][1]])
+# def merge_intervals(intervals):
+#     output = []
+#     output.append([intervals[0][0], intervals[0][1]])
 
-    for i in range(1, len(intervals)):
+#     for i in range(1, len(intervals)):
+#         last_added = output[len(output)-1]
+#         cur_begin = intervals[i][0]
+#         cur_end = intervals[i][1]
+#         last_added_end = last_added[1]
+
+#         if cur_begin <= last_added_end:
+#             output[-1][1] = max(cur_end, last_added_end)
+#         else:
+#             output.append([cur_begin, cur_end])
+
+
+#     return output
+
+
+# # Driver code
+# def main():
+    
+#     all_intervals = [
+#     [[1, 5], [3, 7], [4, 6]],
+#     [[1, 5], [4, 6], [6, 8], [11, 15]],
+#     [[3, 7], [6, 8], [10, 12], [11, 15]],
+#     [[1, 5]],
+#     [[1, 9], [3, 8], [4, 4]],
+#     [[1, 2], [3, 4], [8, 8]],
+#     [[1, 5], [1, 3]],
+#     [[1, 5], [6, 9]],
+#     [[0, 0], [1, 18], [1, 3]]
+#     ]
+
+#     for i in range(len(all_intervals)):
+#         print(i + 1, ". Intervals to merge: ", all_intervals[i], sep="")
+#         result = merge_intervals(all_intervals[i])
+#         print("   Merged intervals:\t", result)
+#         print("-"*100)
+
+# if __name__ == '__main__':
+#     main()
+
+def insert_interval(existing_intervals, new_interval):
+    new_interval_start = new_interval[0]
+    new_interval_end = new_interval[1]
+
+    output = []
+    i=0
+    
+    existing_length = len(existing_intervals)
+
+    while i < existing_length and existing_intervals[i][0] < new_interval_start:
+        output.append(existing_intervals[i])
+        i+=1
+
+    if not output or output[-1][1] < new_interval_start:
+        output.append(new_interval)
+    else:
+        output[-1][1] = new_interval_end
+
+    for i in range(len(existing_intervals)):
         last_added = output[len(output)-1]
-        cur_begin = intervals[i][0]
-        cur_end = intervals[i][1]
+        cur_begin = existing_intervals[i][0]
+        cur_end = existing_intervals[i][1]
         last_added_end = last_added[1]
 
         if cur_begin <= last_added_end:
             output[-1][1] = max(cur_end, last_added_end)
+            i +=1
         else:
             output.append([cur_begin, cur_end])
-
+            i+=1
 
     return output
 
-
 # Driver code
 def main():
-    
-    all_intervals = [
-    [[1, 5], [3, 7], [4, 6]],
-    [[1, 5], [4, 6], [6, 8], [11, 15]],
-    [[3, 7], [6, 8], [10, 12], [11, 15]],
-    [[1, 5]],
-    [[1, 9], [3, 8], [4, 4]],
-    [[1, 2], [3, 4], [8, 8]],
-    [[1, 5], [1, 3]],
-    [[1, 5], [6, 9]],
-    [[0, 0], [1, 18], [1, 3]]
+    new_interval = [[5, 7], [8, 9], [10, 12], [1, 3], [1, 10]]
+    existing_intervals = [
+        [[1, 2], [3, 5], [6, 8]],
+        [[1, 3], [5, 7], [10, 12]],
+        [[8, 10], [12, 15]],
+        [[5, 7], [8, 9]],
+        [[3, 5]]
     ]
-
-    for i in range(len(all_intervals)):
-        print(i + 1, ". Intervals to merge: ", all_intervals[i], sep="")
-        result = merge_intervals(all_intervals[i])
-        print("   Merged intervals:\t", result)
+    
+    for i in range(len(new_interval)):
+        print(i + 1, ".\tExiting intervals: ", existing_intervals[i], sep="")
+        print("\tNew interval: ", new_interval[i], sep="")
+        output = insert_interval(existing_intervals[i], new_interval[i])
+        print("\tUpdated intervals: ", output, sep = "")
         print("-"*100)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
