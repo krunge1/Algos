@@ -446,47 +446,93 @@
 # if __name__ == "__main__":
 #     main()
 
-def binary_search(nums, target):
-    start = 0
-    end = len(nums)-1
+# def binary_search(nums, target):
+#     start = 0
+#     end = len(nums)-1
     
-    while start <= end:
-        mid = start + ((end-start)//2)
-        if nums[mid] == target:
-            return mid
+#     while start <= end:
+#         mid = start + ((end-start)//2)
+#         if nums[mid] == target:
+#             return mid
 
-        elif nums[mid] > target:
-            end = mid-1
+#         elif nums[mid] > target:
+#             end = mid-1
 
-        else:
-            start = mid+1
+#         else:
+#             start = mid+1
 
+#     return -1
+
+# def main():
+#     nums_lists = [
+#         [], 
+#         [0, 1],
+#         [1, 2, 3], 
+#         [-1, 0, 3, 5, 9, 12], 
+#         [-100, -67, -55, -50, -49, -40, -33, -22, -10, -5]
+#       ]
+#     target_list = [12, 1, 3, 9, -22]
+
+#     for i in range(len(nums_lists)):
+#         nums = nums_lists[i]
+#         target = target_list[i]
+#         index = binary_search(nums, target)
+
+#         print(i+1, ".\tArray to search: ", nums, sep="")
+#         print("\tTarget: ", target, sep="")
+
+#         if index != -1:
+#             print("\t", target, " exists in the array at index ", index, sep="")
+#         else:
+#             print("\t", target, " does not exist in the array so the return value is ", index, sep="")
+#         print('-' * 100)
+
+
+# if __name__ == '__main__':
+# 		main()
+
+
+def binary_search_rotated(nums, target):
+  low = 0
+  high = len(nums)-1
+
+  if low>high:
     return -1
 
+  while low <= high:
+    mid = low + (high-low)//2
+    
+    if target == nums[mid]:
+      return mid
+
+    if nums[low] <= nums[mid]:
+      if nums[low] <= target and target < nums[mid]:
+        high = mid - 1
+      else:
+        low = mid + 1 
+    else:
+      if nums[mid] < target and target <= nums[high]:
+        low = mid + 1
+      else:
+        high = mid - 1 
+
+
+
+  return -1
 def main():
-    nums_lists = [
-        [], 
-        [0, 1],
-        [1, 2, 3], 
-        [-1, 0, 3, 5, 9, 12], 
-        [-100, -67, -55, -50, -49, -40, -33, -22, -10, -5]
-      ]
-    target_list = [12, 1, 3, 9, -22]
+    nums_list = [[5, 6, 7, 1, 2, 3, 4],
+                 [40, 50, 60, 10, 20, 30],
+                 [47, 58, 69, 72, 83, 94, 12, 24, 35], 
+                 [77, 82, 99, 105, 5, 13, 28, 41, 56, 63], 
+                 [48, 52, 57, 62, 68, 72, 5, 7, 12, 17, 21, 28, 33, 37, 41]]
 
-    for i in range(len(nums_lists)):
-        nums = nums_lists[i]
-        target = target_list[i]
-        index = binary_search(nums, target)
+    target_list = [1, 50, 12, 56, 5]
 
-        print(i+1, ".\tArray to search: ", nums, sep="")
-        print("\tTarget: ", target, sep="")
-
-        if index != -1:
-            print("\t", target, " exists in the array at index ", index, sep="")
-        else:
-            print("\t", target, " does not exist in the array so the return value is ", index, sep="")
-        print('-' * 100)
+    for i in range(len(target_list)):
+        print((i + 1), ".\tRotated array: ", nums_list[i], "\n\ttarget", target_list[i], "found at index ", \
+              binary_search_rotated(nums_list[i], target_list[i]))
+        print("-"*100)
 
 
 if __name__ == '__main__':
-		main()
+    main()
