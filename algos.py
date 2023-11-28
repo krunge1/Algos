@@ -492,47 +492,120 @@
 # 		main()
 
 
-def binary_search_rotated(nums, target):
-  low = 0
-  high = len(nums)-1
+# def binary_search_rotated(nums, target):
+#   low = 0
+#   high = len(nums)-1
 
-  if low>high:
-    return -1
+#   if low>high:
+#     return -1
 
-  while low <= high:
-    mid = low + (high-low)//2
+#   while low <= high:
+#     mid = low + (high-low)//2
     
-    if target == nums[mid]:
-      return mid
+#     if target == nums[mid]:
+#       return mid
 
-    if nums[low] <= nums[mid]:
-      if nums[low] <= target and target < nums[mid]:
-        high = mid - 1
-      else:
-        low = mid + 1 
-    else:
-      if nums[mid] < target and target <= nums[high]:
-        low = mid + 1
-      else:
-        high = mid - 1 
+#     if nums[low] <= nums[mid]:
+#       if nums[low] <= target and target < nums[mid]:
+#         high = mid - 1
+#       else:
+#         low = mid + 1 
+#     else:
+#       if nums[mid] < target and target <= nums[high]:
+#         low = mid + 1
+#       else:
+#         high = mid - 1 
 
 
 
-  return -1
+#   return -1
+# def main():
+#     nums_list = [[5, 6, 7, 1, 2, 3, 4],
+#                  [40, 50, 60, 10, 20, 30],
+#                  [47, 58, 69, 72, 83, 94, 12, 24, 35], 
+#                  [77, 82, 99, 105, 5, 13, 28, 41, 56, 63], 
+#                  [48, 52, 57, 62, 68, 72, 5, 7, 12, 17, 21, 28, 33, 37, 41]]
+
+#     target_list = [1, 50, 12, 56, 5]
+
+#     for i in range(len(target_list)):
+#         print((i + 1), ".\tRotated array: ", nums_list[i], "\n\ttarget", target_list[i], "found at index ", \
+#               binary_search_rotated(nums_list[i], target_list[i]))
+#         print("-"*100)
+
+
+# if __name__ == '__main__':
+#     main()
+
+# def valid_palindrome(s):
+#     left = 0
+#     right = len(s)-1
+
+#     while left < right:
+#         if s[left]!=s[right]:
+#             return False
+#         else:
+#             left +=1
+#             right -=1
+#     return True
+
+# # Driver Code
+# def main():
+
+#     test_cases = ["RACEACAR", "A", "ABCDEFGFEDCBA",
+#                   "ABC", "ABCBA", "ABBA", "RACEACAR"]
+#     for i in range(len(test_cases)):
+#         print("Test Case #", i + 1)
+#         print("-" * 100)
+#         print("The input string is '", test_cases[i], "' and the length of the string is ", len(test_cases[i]), ".", sep='')
+#         print("Is it a palindrome?.....", valid_palindrome(test_cases[i]))
+#         print("-" * 100)
+        # if __name__ == '__main__':
+        #     main()
+
+
+def sum_of_three(arr, target):
+    arr.sort()
+    length = len(arr)
+
+    for x in range(length -2):
+        pointer_one = x +1
+        pointer_two = length -1
+
+        while pointer_one < pointer_two:
+            current_sum = arr[x] + arr[pointer_one] + arr[pointer_two] 
+            if current_sum == target:
+                return True
+            elif current_sum < target:
+                pointer_one +=1
+            else:
+                pointer_two -=1
+
+        return False
+
+# Driver code
 def main():
-    nums_list = [[5, 6, 7, 1, 2, 3, 4],
-                 [40, 50, 60, 10, 20, 30],
-                 [47, 58, 69, 72, 83, 94, 12, 24, 35], 
-                 [77, 82, 99, 105, 5, 13, 28, 41, 56, 63], 
-                 [48, 52, 57, 62, 68, 72, 5, 7, 12, 17, 21, 28, 33, 37, 41]]
+    nums_lists = [[3, 7, 1, 2, 8, 4, 5],
+                  [-1, 2, 1, -4, 5, -3],
+                  [2, 3, 4, 1, 7, 9],
+                  [1, -1, 0],
+                  [2, 4, 2, 7, 6, 3, 1]]
 
-    target_list = [1, 50, 12, 56, 5]
+    targets = [10, 7, 20, -1, 8]
 
-    for i in range(len(target_list)):
-        print((i + 1), ".\tRotated array: ", nums_list[i], "\n\ttarget", target_list[i], "found at index ", \
-              binary_search_rotated(nums_list[i], target_list[i]))
+    for i in range(len(nums_lists)):
+        print(i + 1, ".\tInput array: ", nums_lists[i], sep="")
+        if sum_of_three(nums_lists[i], targets[i]):
+            print("\tSum for", targets[i], "exists")
+        else:
+            print("\tSum for", targets[i], "does not exist")
         print("-"*100)
-
 
 if __name__ == '__main__':
     main()
+
+
+
+
+
+
